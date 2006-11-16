@@ -9,12 +9,12 @@
 
     for i in $list; do
 
-      sed "s|_FILE_|$i|" METTester.cfg > METTester-run.cfg
-      cmsRun --parameter-set METTester-run.cfg >& METTester-$i.log
-      rm METTester-run.cfg
+      sed "s|_FILE_|$i|" METAnalyzer.cfg > METAnalyzer-run.cfg
+      cmsRun --parameter-set METAnalyzer-run.cfg >& METAnalyzer-$i.log
+      rm METAnalyzer-run.cfg
 
       sed "s|_FILE_|$i|" plotCompare.C > plotCompare-run.C
-      root -b -q plotCompare-run.C >> METTester-$i.log
+      root -b -q plotCompare-run.C >> METAnalyzer-$i.log
       rm plotCompare-run.C
 
     done 
