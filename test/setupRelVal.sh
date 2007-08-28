@@ -123,7 +123,7 @@ echo "process TEST =
   {
      string InputGenMETLabel  = 'genMet'
      string InputCaloMETLabel = 'met'
-     untracked string OutputFile = 'METTester_$i.root'
+     untracked string OutputFile = 'METTester_data_$i.root'
   }
 
   path p = {$RunPath}
