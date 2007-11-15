@@ -1,19 +1,11 @@
 
-service = DaqMonitorROOTBackEnd{ }
+ module metAnalyzer = METTester
+  {
+     string InputGenMETLabel  = 'genMet'
+     string InputCaloMETLabel = 'met'
+     untracked string OutputFile = 'METTester_data.root'
+  }
 
-module metAnalyzer = METTester
-{
-   string InputGenMETLabel  = 'genMet'
-   string InputCaloMETLabel = 'met'
-   untracked string outputFile = 'RecoMETValidation.root'
-   double CaloMExResFitMin           = 770.0
-   double CaloMExResFitMax           = 1800.0
-   int32  CaloMExResHistoSumETNumBin = 10
-   double CaloMExResHistoLowSumET    = 770.0
-   double CaloMExResHistoHighSumET   = 1800.0
-   int32  CaloMExResHistoMExNumBin   = 10
-   double CaloMExResHistoLowMEx      = -199.0
-   double CaloMExResHistoHighMEx     = 200.0
-}
+
 sequence recoMETValidation = { metAnalyzer }
 
