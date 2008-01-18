@@ -39,7 +39,7 @@ void DrawBox(TBox *bColor, TBox *bLine, Float_t x, Float_t y, Float_t dx, Float_
   bLine->Draw("SAME");
 }
 
-void plotHCALminenergy(){
+void plotHCALminmaxavgEnergy(){
   SetUp();
   double pi = TMath::Pi();
 
