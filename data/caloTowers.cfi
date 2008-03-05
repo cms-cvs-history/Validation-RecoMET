@@ -5,7 +5,7 @@
 # Fill validation histograms for caloTowers.
 
 
-  module towerSchemeBAnalyzers = CaloTowerAnalyzer{
+  module towerSchemeBAnalyzer = CaloTowerAnalyzer{
        untracked string OutputFile = "CaloTowerAnalyzer_SchemeB.root"
        untracked string GeometryFile = "CaloTowerAnalyzer_geometry.dat"
        InputTag CaloTowersLabel  = caloTowers
@@ -13,7 +13,7 @@
        bool Debug = false
   }
 
-  module towerOptAnalyzers = CaloTowerAnalyzer{
+  module towerOptAnalyzer = CaloTowerAnalyzer{
        untracked string OutputFile = "CaloTowerAnalyzer_Opt.root"
        untracked string GeometryFile = "CaloTowerAnalyzer_geometry.dat"
        InputTag CaloTowersLabel  = caloTowersOpt

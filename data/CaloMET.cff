@@ -6,4 +6,4 @@
 
 include "Validation/RecoMET/data/CaloMET.cfi"
 
-sequence analyzeCalMET = {metAnalyzer, metNoHFAnalyzer, metOptAnalyzer, metOptNoHFAnalyzer} 
+sequence analyzeCaloMET = {metAnalyzer, metNoHFAnalyzer, metOptAnalyzer, metOptNoHFAnalyzer} 
