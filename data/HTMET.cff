@@ -6,6 +6,6 @@
 # htMetSC7, htMetIC5, htMetKT4, and htMetKT6 are in the event.
 
 
-include "Validation/RecoMET/data/HFMET.cfi"
+include "Validation/RecoMET/data/HTMET.cfi"
 
 sequence analyzeHTMET = {htMetSC5Analyzer, htMetSC7Analyzer, htMetIC5Analyzer, htMetKT4Analyzer, htMetKT6Analyzer}
