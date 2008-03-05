@@ -1,0 +1,9 @@
+# File: GenMETFromGenJets.cfi
+# Author: B. Scurlock
+# Date: 03.04.2008
+#
+# Fill validation histograms for MET. Assumes genMetIC5GenJetsPt10 and genMetIC5GenJetsNoNuBSM are in the event.
+
+include "Validation/RecoMET/data/GenMETFromGenJets.cfi"
+
+sequence analyzeGenMETFromGenJets = {genMetIC5GenJetsPt10Analyzer, genMetIC5GenJetsNoNuBSMAnalyzer} 

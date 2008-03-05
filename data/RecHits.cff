@@ -1,0 +1,12 @@
+# File: RecHits.cfi
+# Author: B. Scurlock
+# Date: 03.04.2008
+#
+# Fill validation histograms for ECAL and HCAL RecHits.
+# Assumes ecalRecHit:EcalRecHitsEE, ecalRecHit:EcalRecHitsEB, hbhereco, horeco, and hfreco
+# are in the event.
+
+include "Validation/RecoMET/data/RecHits.cfi"
+
+sequence analyzeRecHits = {ECALAnalyzer, HCALAnalyzer}
+

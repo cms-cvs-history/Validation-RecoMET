@@ -1,0 +1,12 @@
+# File: caloTowers.cfi
+# Author: B. Scurlock
+# Date: 03.04.2008
+#
+# Fill validation histograms for caloTowers.
+# Assumes caloTowers are in event. Puts caloTowersOpt in the event, which
+# assumes RecHits.
+
+include "Validation/RecoMET/data/caloTowers.cfi"
+include "RecoMET/Configuration/data/CaloTowersOptForMET.cff"
+
+sequence analyzecaloTowers = {caloTowersMETOptRec, towerOptAnalyzer, towerSchemeBAnalyzer}
