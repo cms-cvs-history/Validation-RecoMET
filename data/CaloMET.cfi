@@ -1,0 +1,33 @@
+# File: CaloMET.cfi
+# Author: B. Scurlock
+# Date: 03.04.2008
+#
+# Fill validation histograms for MET.
+
+  module metAnalyzer = METTester
+  {
+     InputTag InputMETLabel      = met
+     untracked string METType    = "CaloMET"
+     untracked string OutputFile = "METTester_met.root"
+  }
+
+  module metNoHFAnalyzer = METTester
+  {
+     InputTag InputMETLabel      = metNoHF
+     untracked string METType    = "CaloMET"
+     untracked string OutputFile = "METTester_metNoHF.root"
+  }
+
+  module metOptAnalyzer = METTester
+  {
+     InputTag InputMETLabel      = metOpt
+     untracked string METType    = "CaloMET"
+     untracked string OutputFile = "METTester_metOpt.root"
+  }
+
+  module metOptNoHFAnalyzer = METTester
+  {
+     InputTag InputMETLabel      = metOptNoHF
+     untracked string METType    = "CaloMET"
+     untracked string OutputFile = "METTester_metOptNoHF.root"
+  }

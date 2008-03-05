@@ -1,0 +1,24 @@
+# File: caloTowers.cfi
+# Author: B. Scurlock
+# Date: 03.04.2008
+#
+# Fill validation histograms for caloTowers.
+
+
+  module towerSchemeBAnalyzers = CaloTowerAnalyzer{
+       untracked string OutputFile = "CaloTowerAnalyzer_SchemeB.root"
+       untracked string GeometryFile = "CaloTowerAnalyzer_geometry.dat"
+       InputTag CaloTowersLabel  = caloTowers
+       bool DumpGeometry = false
+       bool Debug = false
+  }
+
+  module towerOptAnalyzers = CaloTowerAnalyzer{
+       untracked string OutputFile = "CaloTowerAnalyzer_Opt.root"
+       untracked string GeometryFile = "CaloTowerAnalyzer_geometry.dat"
+       InputTag CaloTowersLabel  = caloTowersOpt
+       bool DumpGeometry = false
+       bool Debug = false
+  }
+
+
