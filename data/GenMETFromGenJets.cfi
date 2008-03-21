@@ -4,17 +4,11 @@
 #
 # Fill validation histograms for MET.
 
-  module genMetIC5GenJetsPt10Analyzer = METTester
+  module genMetIC5GenJetsAnalyzer = METTester
   {
-     InputTag InputMETLabel      = genMetIC5GenJetsPt10
+     InputTag InputMETLabel      = genMetIC5GenJets
      untracked string METType    = "MET"
-     untracked string OutputFile = "METTester_genMetIC5GenJetsPt10.root"
+     untracked string OutputFile = "METTester_genMetIC5GenJets.root"
   }
 
-  module genMetIC5GenJetsNoNuBSMAnalyzer = METTester
-  {
-     InputTag InputMETLabel      = genMetIC5GenJetsNoNuBSM
-     untracked string METType    = "MET"
-     untracked string OutputFile = "METTester_genMetIC5GenJetsNoNuBSM.root"
-  }
 
