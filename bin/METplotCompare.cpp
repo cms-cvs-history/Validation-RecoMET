@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
   if (argc != 3) { cerr << "Usage: " << argv[0] << " [reference.root] [new-comparison.root]\n"; return 1; }
 
   // create the comparison class
-  PlotCompareUtility *pc = new PlotCompareUtility(argv[1],argv[2],"DQMData/METTask","METTask_");
+  PlotCompareUtility *pc = new PlotCompareUtility(argv[1],argv[2],"DQMData/RecoMETV/MET/met/","METTask_");
   HistoData *hd;
 
   if (pc->GetStatus() != 0) { cout << "Final Result: no_data" << endl; return 0; }
