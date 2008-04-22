@@ -41,7 +41,7 @@ echo "process TEST =
   include \"RecoMET/METProducers/data/genMet.cfi\"
 
 
-  service = DaqMonitorROOTBackEnd{ }
+  service = DQMStore{ }
   source = PoolSource
   {
       include \"Validation/RecoMET/data/RelVal_data/FilePaths-$i.cfi\"
