@@ -63,24 +63,6 @@ include \"Validation/RecoMET/data/RecHits.cff\"
 
  #   include \"Validation/RecoMET/data/RelVal_data/MaxEvents.cfi\"
 
-# Geometry - overkill, used for test/completeness  #
-# includes Sim, Digi & Reco files as far
- #            as I can tell.
-
- #   include \"Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi\"
-
-    include \"Geometry/CaloEventSetup/test/data/testCaloConfiguration.cfi\"
-
- # Magnetic field full setup
-
-    include \"MagneticField/Engine/data/volumeBasedMagneticField.cfi\"
-
- # Calo geometry service model
-    include \"Geometry/CaloEventSetup/data/CaloGeometry.cfi\"
-
- # Ecal TT mapping
-    include \"Geometry/CaloEventSetup/data/EcalTrigTowerConstituents.cfi\"
-
 
   module fileSaver = METFileSaver
   {
