@@ -9,4 +9,5 @@
 include "Validation/RecoMET/data/caloTowers.cfi"
 include "RecoMET/Configuration/data/CaloTowersOptForMET.cff"
 
-sequence analyzecaloTowers = {caloTowersMETOptRec, towerOptAnalyzer, towerSchemeBAnalyzer}
+#sequence analyzecaloTowers = {caloTowersMETOptRec, towerOptAnalyzer, towerSchemeBAnalyzer}
+sequence analyzecaloTowers = { towerOptAnalyzer, towerSchemeBAnalyzer}

@@ -8,7 +8,7 @@
   module towerSchemeBAnalyzer = CaloTowerAnalyzer{
        untracked string OutputFile = "CaloTowerAnalyzer_SchemeB.root"
        untracked string GeometryFile = "CaloTowerAnalyzer_geometry.dat"
-       InputTag CaloTowersLabel  = caloTowers
+       InputTag CaloTowersLabel  = towerMaker
        bool DumpGeometry = false
        bool Debug = false
   }
@@ -16,7 +16,7 @@
   module towerOptAnalyzer = CaloTowerAnalyzer{
        untracked string OutputFile = "CaloTowerAnalyzer_Opt.root"
        untracked string GeometryFile = "CaloTowerAnalyzer_geometry.dat"
-       InputTag CaloTowersLabel  = caloTowersOpt
+       InputTag CaloTowersLabel  = calotoweroptmaker   
        bool DumpGeometry = false
        bool Debug = false
   }
