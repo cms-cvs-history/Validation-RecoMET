@@ -2,17 +2,23 @@
 
 current_area=`pwd`
 echo $current_area
+# Define the directory that will hold the histogram root files for Full Simulation
+# Note: Both Full Sim and Fast Sim will produce histogram root files with the same name, e.g METTester_data_QCD_30-50.root, so they need to be output to different directories!!!
 
+FullSimRootFileDirectory=${current_area}/FullSim/
+mkdir $FullSimRootFileDirectory -p
 
+#======= Define list of samples that you will be validating ========#
 dirlist="ZDimu ZprimeDijets QCD_0-15 QCD_15-20 QCD_20-30 QCD_30-50 QCD_50-80 QCD_80-120 QCD_120-170 QCD_170-230 QCD_230-300 QCD_300-380 QCD_380-470 QCD_470-600 QCD_600-800 QCD_800-1000 ttbar QCD_3000-3500"
-#dirlist="ttbar"
 
-#RunPath="fileSaver, caloTowers, analyzeRecHits, analyzecaloTowers, analyzeGenMET, analyzeGenMETFromGenJets, analyzeHTMET, analyzeCaloMET"
+
+#======= Define list of modules that will be run for each sample ========#
 RunPath="fileSaver, calotoweroptmaker, analyzeRecHits, analyzecaloTowers, analyzeGenMET, analyzeGenMETFromGenJets, analyzeHTMET, analyzeCaloMET"
-#RunPath="genMETParticles, genMet, metAnalyzer"
+
+
 echo "Run path = {" $RunPath "}"
 
-mkdir RelVal_data
+mkdir RelVal_data -p
 cd RelVal_data
 #========Make MaxEvents file===============#
 echo "'untracked PSet maxEvents = {untracked int32 input = -1}'" >> MaxEvents.cfi
@@ -74,7 +80,7 @@ include \"Validation/RecoMET/data/RecHits.cff\"
 
   path p = {$RunPath}
   schedule = { p }
-}" > RunAnalyzers-$i.cfg
+}" > ${FullSimRootFileDirectory}/RunAnalyzers-$i.cfg
 #============================================#
 cd $current_area
 done
