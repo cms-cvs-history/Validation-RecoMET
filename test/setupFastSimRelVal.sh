@@ -67,8 +67,8 @@ include \"Validation/RecoMET/data/caloTowers.cff\"
 include \"Validation/RecoMET/data/RecHits.cff\"
 #===== This is specific to FastSim =====#
 
-replace EERecHitsLabel = caloRecHits:EcalRecHitsEE
-replace EBRechitsLabel = caloRecHits:EcalRecHitsEB
+replace ECALAnalyzer.EERecHitsLabel = caloRecHits:EcalRecHitsEE
+replace HCALAnalyzer.EBRechitsLabel = caloRecHits:EcalRecHitsEB
 
 #=====# 
 
