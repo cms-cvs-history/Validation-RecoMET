@@ -50,11 +50,11 @@ include \"RecoJets/Configuration/data/CaloTowersRec.cff\"
 #=====  This is specific to FastSim ======#
 
 ### Have to remake calotowers for optimized thresholds ###
-include \"RecoJets/Configuration/data/CaloTowersOpt.cfi\"
+include \"RecoMET/METProducers/data/CaloTowersOpt.cfi\"
 replace calotoweroptmaker.hbheInput = caloRecHits
 replace calotoweroptmaker.hoInput = caloRecHits
 replace calotoweroptmaker.hfInput = caloRecHits
-replace calotoweroptmaker.ecalInputs = { caloRecHits:EcalRecHitsEB, caloRechHits:EcalRecHitsEE }
+replace calotoweroptmaker.ecalInputs = { caloRecHits:EcalRecHitsEB, caloRecHits:EcalRecHitsEE }
 
 #=====#
 
@@ -68,7 +68,11 @@ include \"Validation/RecoMET/data/RecHits.cff\"
 #===== This is specific to FastSim =====#
 
 replace ECALAnalyzer.EERecHitsLabel = caloRecHits:EcalRecHitsEE
-replace HCALAnalyzer.EBRechitsLabel = caloRecHits:EcalRecHitsEB
+replace ECALAnalyzer.EBRecHitsLabel = caloRecHits:EcalRecHitsEB
+replace HCALAnalyzer.HBHERecHitsLabel = caloRecHits
+replace HCALAnalyzer.HORecHitsLabel = caloRecHits
+replace HCALAnalyzer.HFRecHitsLabel = caloRecHits
+
 
 #=====# 
 
@@ -78,7 +82,7 @@ replace HCALAnalyzer.EBRechitsLabel = caloRecHits:EcalRecHitsEB
   service = DQMStore{ }
   source = PoolSource
   {
-      include \"Validation/RecoMET/data/RelVal_data/FilePaths-$i_FastSim.cfi\"
+      include \"Validation/RecoMET/data/RelVal_data/FilePaths-${i}_FastSim.cfi\"
 
 
     untracked uint32 debugVebosity = 10
