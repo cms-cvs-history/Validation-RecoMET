@@ -25,6 +25,11 @@ process.load("Validation.RecoMET.caloTowers_cff")
 
 process.load("Validation.RecoMET.RecHits_cff")
 
+process.load("Configuration.StandardSequences.Geometry_cff")
+
+process.load("Configuration.StandardSequences.MagneticField_cff")
+
+
 process.DQMStore = cms.Service("DQMStore")
 
 process.source = cms.Source("PoolSource",

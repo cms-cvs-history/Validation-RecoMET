@@ -9,7 +9,8 @@ FastSimRootFileDirectory=${current_area}/FastSim/
 mkdir $FastSimRootFileDirectory -p
 
 #======= Define list of samples that you will be validating ========#
-dirlist="ZDimu ZprimeDijets QCD_0-15 QCD_15-20 QCD_20-30 QCD_30-50 QCD_50-80 QCD_80-120 QCD_120-170 QCD_170-230 QCD_230-300 QCD_300-380 QCD_380-470 QCD_470-600 QCD_600-800 QCD_800-1000 ttbar QCD_3000-3500"
+#dirlist="ZDimu ZprimeDijets QCD_0-15 QCD_15-20 QCD_20-30 QCD_30-50 QCD_50-80 QCD_80-120 QCD_120-170 QCD_170-230 QCD_230-300 QCD_300-380 QCD_380-470 QCD_470-600 QCD_600-800 QCD_800-1000 ttbar QCD_3000-3500"
+dirlist="ttbar"
 
 #======= Define list of modules that will be run for each sample ========#
 RunPath="fileSaver, calotoweroptmaker, analyzeRecHits, analyzecaloTowers, analyzeGenMET, analyzeGenMETFromGenJets, analyzeHTMET, analyzeCaloMET"
@@ -76,7 +77,8 @@ replace HCALAnalyzer.HFRecHitsLabel = caloRecHits
 
 #=====# 
 
-
+include \"Configuration/StandardSequences/data/Geometry.cff\"       
+include \"Configuration/StandardSequences/data/MagneticField.cff\"  
 
 
   service = DQMStore{ }
