@@ -35,12 +35,17 @@ process.DQMStore = cms.Service("DQMStore")
 process.source = cms.Source("PoolSource",
     debugFlag = cms.untracked.bool(True),
     debugVebosity = cms.untracked.uint32(10),
-    fileNames = cms.untracked.vstring('/store/relval/2008/6/6/RelVal-RelValZMM-1212543891-STARTUP-2nd-02/0000/9C28F593-E533-DD11-997C-000423D98BE8.root')
+    fileNames = cms.untracked.vstring(
+
+      '/store/relval/CMSSW_2_1_9/RelValZMM/GEN-SIM-DIGI-RAW-HLTDEBUG-RECO/STARTUP_V7_v2/0000/C04A28B2-FB85-DD11-8A3B-000423D98B5C.root'
+    )
 )
 
 process.fileSaver = cms.EDFilter("METFileSaver",
     OutputFile = cms.untracked.string('METTester_data_ZDimu.root')
 )
+
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
 
 process.p = cms.Path(process.fileSaver*process.calotoweroptmaker*process.analyzeRecHits*process.analyzecaloTowers*process.analyzeGenMET*process.analyzeGenMETFromGenJets*process.analyzeHTMET*process.analyzeCaloMET)
 process.schedule = cms.Schedule(process.p)
