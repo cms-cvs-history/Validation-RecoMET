@@ -5,7 +5,7 @@ process.load("RecoMET.Configuration.RecoMET_cff")
 
 process.load("Validation.RecoMET.TCMET_cff")
 
-rocess.load("RecoMET.METProducers.TCMET_cfi")
+process.load("RecoMET.METProducers.TCMET_cfi")
 
 process.load("Configuration.StandardSequences.Geometry_cff")
 
