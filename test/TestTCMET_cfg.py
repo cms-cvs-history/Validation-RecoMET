@@ -5,6 +5,16 @@ process.load("RecoMET.Configuration.RecoMET_cff")
 
 process.load("Validation.RecoMET.TCMET_cff")
 
+process.load("RecoMET.Configuration.CaloTowersOptForMET_cff")
+
+process.load("RecoMET.Configuration.RecoMET_cff")
+
+process.load("RecoMET.Configuration.RecoHTMET_cff")
+
+process.load("RecoMET.Configuration.RecoGenMET_cff")
+
+process.load("RecoJets.Configuration.CaloTowersRec_cff")
+
 process.load("RecoMET.METProducers.TCMET_cfi")
 
 process.load("Validation.RecoMET.CaloMET_cff")
@@ -57,11 +67,11 @@ process.fileSaver = cms.EDFilter("METFileSaver",
     OutputFile = cms.untracked.string('TCMet_ttbar.root')
 )
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(5000) ) 
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(500) ) 
 
 
 #process.p = cms.Path(process.fileSaver*process.tcMet*process.AnalyzeTCMET)
-process.p = cms.Path(process.fileSaver*process.tcMet*process.tcMetAnalyzer*process.metAnalyzer)
+process.p = cms.Path(process.fileSaver*process.towerMakerWithHO*process.calotoweroptmaker*process.metreco*process.tcMetAnalyzer*process.metAnalyzer)
 process.schedule = cms.Schedule(process.p)
 
 
