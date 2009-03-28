@@ -1,6 +1,9 @@
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("TEST")
+process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
+process.GlobalTag.globaltag = 'STARTUP_30X::All'
+
 process.load("RecoMET.Configuration.CaloTowersOptForMET_cff")
 
 process.load("RecoMET.Configuration.RecoMET_cff")
@@ -53,6 +56,7 @@ process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
 
         '/store/relval/CMSSW_3_1_0_pre4/RelValQCD_Pt_80_120/GEN-SIM-RECO/STARTUP_30X_v1/0003/06072974-1916-DE11-80F2-001617DBD224.root'
+#            '/store/relval/CMSSW_3_1_0_pre4/RelValQCD_Pt_80_120/GEN-SIM-DIGI-RECO/STARTUP_30X_FastSim_v1/0001/54F25125-2916-DE11-8F06-0018F3D096A0.root'
 
     )
 
@@ -63,7 +67,7 @@ process.source = cms.Source("PoolSource",
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(20) )
 
 process.fileSaver = cms.EDFilter("METFileSaver",
-    OutputFile = cms.untracked.string('METTester_data_QCD_80-120.root')
+    OutputFile = cms.untracked.string('METTester.root')
 ) 
 process.p = cms.Path(process.fileSaver*
                      process.calotoweroptmaker*
