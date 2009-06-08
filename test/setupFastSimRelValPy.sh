@@ -10,32 +10,26 @@ mkdir $FastSimRootFileDirectory -p
 
 #======= Define list of samples that you will be validating ========#
 #dirlist="ZDimu ZprimeDijets QCD_0-15 QCD_15-20 QCD_20-30 QCD_30-50 QCD_50-80 QCD_80-120 QCD_120-170 QCD_170-230 QCD_230-300 QCD_300-380 QCD_380-470 QCD_470-600 QCD_600-800 QCD_800-1000 ttbar QCD_3000-3500"
-dirlist="ttbar"
+dirlist="QCD_80-120_startup ttbar QCD_FlatPt_15_3000"
+
 
 #======= Define list of modules that will be run for each sample ========#
-RunPath="fileSaver, calotoweroptmaker, analyzeRecHits, analyzecaloTowers, analyzeGenMET, analyzeGenMETFromGenJets, analyzeHTMET, analyzeCaloMET"
+RunPath="fileSaver, calotoweroptmaker, analyzeRecHits, analyzecaloTowers, analyzeGenMET, analyzeGenMETFromGenJets, analyzeHTMET, analyzeCaloMET, analyzeTCMET,OB analyzePFMET"
 
 
 echo "Run path = {" $RunPath "}"
 
 
-#========Make MaxEvents file===============#
-#echo "'untracked PSet maxEvents = {untracked int32 input = -1}'" >> MaxEvents.cfi
 #==========================================#
 cd $current_area
 
 for i in $dirlist; do
 
-#========Make path file====================#
-#echo "import FWCore.ParameterSet.Config as cms
-#fileNames = cms.untracked.vstring(
-#)
-#" > FilePaths-${i}_cfi.py
+
 #==========================================#
 cd $current_area
 
-
-#======Make RunAnalyzers.cfg=================#
+#======Make RunAnalyzers_cfg.py=================#
 echo "import FWCore.ParameterSet.Config as cms
 
 process = cms.Process(\"TEST\")
@@ -49,16 +43,9 @@ process.load(\"RecoMET.Configuration.RecoGenMET_cff\")
 
 process.load(\"RecoMET.Configuration.GenMETParticles_cff\")
 
+process.load(\"RecoMET.Configuration.RecoPFMET_cff\")
+
 process.load(\"RecoJets.Configuration.CaloTowersRec_cff\")
-
-#=====  This is specific to FastSim ======#
-from RecoMET.METProducers.CaloTowersOpt_cfi import calotoweroptmaker
-
-calotoweroptmaker.hbheInput = cms.InputTag(\"caloRecHits\")
-calotoweroptmaker.hoInput = cms.InputTag(\"caloRecHits\")
-calotoweroptmaker.hfInput = cms.InputTag(\"caloRecHits\")
-calotoweroptmaker.ecalInputs = cms.VInputTag(cms.InputTag(\"caloRecHits:EcalRecHitsEB\"), cms.InputTag(\"caloRecHits:EcalRecHitsEE\"))
-process.calotoweroptmaker = calotoweroptmaker
 
 process.load(\"Validation.RecoMET.CaloMET_cff\")
 
@@ -70,15 +57,11 @@ process.load(\"Validation.RecoMET.GenMETFromGenJets_cff\")
 
 process.load(\"Validation.RecoMET.caloTowers_cff\")
 
-from Validation.RecoMET.RecHits_cff import ECALAnalyzer
-ECALAnalyzer.EERecHitsLabel = cms.InputTag(\"caloRecHits:EcalRecHitsEE\")
-ECALAnalyzer.EBRecHitsLabel = cms.InputTag(\"caloRecHits:EcalRecHitsEB\")
-process.ECALAnalyzer = ECALAnalyzer 
+process.load(\"Validation.RecoMET.RecHits_cff\")
 
-from Validation.RecoMET.RecHits_cff import HCALAnalyzer
-HCALAnalyzer.HORecHitsLabel = cms.InputTag(\"horeco\")
-HCALAnalyzer.HFRecHitsLabel = cms.InputTag(\"hfreco\")
-process.HCALAnalyzer = HCALAnalyzer 
+process.load(\"Validation.RecoMET.PFMET_cff\")
+
+process.load(\"Validation.RecoMET.TCMET_cff\")
 
 process.load(\"Configuration.StandardSequences.Geometry_cff\")
 
@@ -89,18 +72,32 @@ process.DQMStore = cms.Service(\"DQMStore\")
 process.source = cms.Source(\"PoolSource\",
     debugFlag = cms.untracked.bool(True),
     debugVebosity = cms.untracked.uint32(10),
-    fileNames = cms.untracked.vstring()
+    fileNames = cms.untracked.vstring(
+
+
+
+    )
+
 
 )
+
+
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
 
 
 process.fileSaver = cms.EDFilter(\"METFileSaver\",
     OutputFile = cms.untracked.string('METTester_data_${i}.root')
 ) 
-#process.p = cms.Path(process.fileSaver*process.calotoweroptmaker*process.analyzeRecHits*process.analyzecaloTowers*process.analyzeGenMET*process.analyzeGenMETFromGenJets*process.analyzeHTMET*process.analyzeCaloMET)
-
-process.p = cms.Path(process.fileSaver*process.calotoweroptmaker*process.ECALAnalyzer*process.HCALAnalyzer*process.analyzecaloTowers*process.analyzeGenMET*process.analyzeGenMETFromGenJets*process.analyzeHTMET*process.analyzeCaloMET)
-
+process.p = cms.Path(process.fileSaver*
+#                     process.calotoweroptmaker*
+                     process.analyzeRecHits*
+                     process.analyzecaloTowers*
+                     process.analyzeGenMET*
+                     process.analyzeGenMETFromGenJets*
+                     process.analyzeHTMET*
+                     process.analyzeCaloMET*
+                     process.analyzePFMET*
+                     process.analyzeTCMET)
 process.schedule = cms.Schedule(process.p)
 
 " > ${FastSimRootFileDirectory}/RunAnalyzers-${i}_cfg.py
