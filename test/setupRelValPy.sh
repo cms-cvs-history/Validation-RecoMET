@@ -5,22 +5,21 @@ echo $current_area
 # Define the directory that will hold the histogram root files for Full Simulation
 # Note: Both Full Sim and Fast Sim will produce histogram root files with the same name, e.g METTester_data_QCD_30-50.root, so they need to be output to different directories!!!
 
-FullSimRootFileDirectory=${current_area}/FullSim/
-mkdir $FullSimRootFileDirectory -p
+Directory=${current_area}/FullSim/
+mkdir $Directory -p
 
 #======= Define list of samples that you will be validating ========#
-#dirlist="QCD_Pt_80_120 QCD_Pt_3000_3500 Wjet_Pt_80_120 LM1_sfts TTbar QCD_FlatPt_15_3000"
-dirlist="QCD_Pt_80_120 QCD_Pt_3000_3500"
+dirlist="QCD_Pt_80_120 QCD_Pt_3000_3500 Wjet_Pt_80_120 LM1_sfts TTbar QCD_FlatPt_15_3000"
 
 #======= Define list of modules that will be run for each sample ========#
 RunPath="fileSaver, calotoweroptmaker, analyzeRecHits, analyzecaloTowers, analyzeGenMET, analyzeGenMETFromGenJets, analyzeHTMET, analyzeCaloMET, analyzeTCMET,OB analyzePFMET"
 
 
 echo "Run path = {" $RunPath "}"
-cmssw_version="3_1_2"
-condition="MC_31X_V3-v1"
-globalTag="MC_31X_V3::All"
-#condition="STARTUP31X_V1-v2"
+cmssw_version="3_3_0"
+condition="MC_31X_V9-v1"
+globalTag="MC_31X_V9::All"
+
 
 #==========================================#
 cd $current_area
@@ -92,12 +91,12 @@ process.source = cms.Source(\"PoolSource\",
     debugFlag = cms.untracked.bool(True),
     debugVebosity = cms.untracked.uint32(10),
     fileNames = cms.untracked.vstring(
-"> ${FullSimRootFileDirectory}/RunAnalyzers-${i}_cfg.py
+"> ${Directory}/RunAnalyzers-${i}_cfg.py
 
 
 ds=/RelVal$i/CMSSW_$cmssw_version-$condition/GEN-SIM-RECO
 ./DDSearchCLI.py --verbose=0 --limit=-1 --input="find file where  dataset=$ds" | grep "root" | sed "s/^/'/g" | sed "s/$/',/g">dd
-cat dd >> ${FullSimRootFileDirectory}/RunAnalyzers-${i}_cfg.py
+cat dd >> ${Directory}/RunAnalyzers-${i}_cfg.py
 rm -f dd
 echo "
     )
@@ -126,7 +125,7 @@ process.p = cms.Path(process.fileSaver*
 )
 process.schedule = cms.Schedule(process.p)
 
-" >> ${FullSimRootFileDirectory}/RunAnalyzers-${i}_cfg.py
+" >> ${Directory}/RunAnalyzers-${i}_cfg.py
 #============================================#
 cd $current_area
 done
