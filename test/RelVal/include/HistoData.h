@@ -4,6 +4,8 @@
 #include <string>
 #include <string.h>
 
+using namespace std;
+
 class HistoData {
 public:
 
